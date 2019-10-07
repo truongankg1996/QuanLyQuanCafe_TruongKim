@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyQuanCafeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BanThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBan" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhMucThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayVao" Type="date" Nullable="false" />
+          <Property Name="NgayRa" Type="date" />
+          <Property Name="IdBan" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenDangNhap" />
+          </Key>
+          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TenHienThi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Loai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThongTinHoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHoaDon" Type="int" Nullable="false" />
+          <Property Name="IdThucAn" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenThucAn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdDanhMuc" Type="int" Nullable="false" />
+          <Property Name="Gia" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__HoaDon__TrangTha__49C3F6B7">
+          <End Role="BanThucAn" Type="Self.BanThucAn" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IdBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinH__IdThu__4E88ABD4">
+          <End Role="ThucAn" Type="Self.ThucAn" Multiplicity="1" />
+          <End Role="ThongTinHoaDon" Type="Self.ThongTinHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongTinHoaDon">
+              <PropertyRef Name="IdThucAn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinH__SoLuo__4D94879B">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ThongTinHoaDon" Type="Self.ThongTinHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongTinHoaDon">
+              <PropertyRef Name="IdHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThucAn__Gia__44FF419A">
+          <End Role="DanhMucThucAn" Type="Self.DanhMucThucAn" Multiplicity="1" />
+          <End Role="ThucAn" Type="Self.ThucAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThucAn">
+              <PropertyRef Name="IdDanhMuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="UPS_TaoListBan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="QuanLyQuanCafeModelStoreContainer">
+          <EntitySet Name="BanThucAn" EntityType="Self.BanThucAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucThucAn" EntityType="Self.DanhMucThucAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinHoaDon" EntityType="Self.ThongTinHoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThucAn" EntityType="Self.ThucAn" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HoaDon__TrangTha__49C3F6B7" Association="Self.FK__HoaDon__TrangTha__49C3F6B7">
+            <End Role="BanThucAn" EntitySet="BanThucAn" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinH__IdThu__4E88ABD4" Association="Self.FK__ThongTinH__IdThu__4E88ABD4">
+            <End Role="ThucAn" EntitySet="ThucAn" />
+            <End Role="ThongTinHoaDon" EntitySet="ThongTinHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinH__SoLuo__4D94879B" Association="Self.FK__ThongTinH__SoLuo__4D94879B">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ThongTinHoaDon" EntitySet="ThongTinHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThucAn__Gia__44FF419A" Association="Self.FK__ThucAn__Gia__44FF419A">
+            <End Role="DanhMucThucAn" EntitySet="DanhMucThucAn" />
+            <End Role="ThucAn" EntitySet="ThucAn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyQuanCafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuanLyQuanCafeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BanThucAn" EntityType="QuanLyQuanCafeModel.BanThucAn" />
+          <EntitySet Name="DanhMucThucAn" EntityType="QuanLyQuanCafeModel.DanhMucThucAn" />
+          <EntitySet Name="HoaDon" EntityType="QuanLyQuanCafeModel.HoaDon" />
+          <EntitySet Name="TaiKhoan" EntityType="QuanLyQuanCafeModel.TaiKhoan" />
+          <EntitySet Name="ThongTinHoaDon" EntityType="QuanLyQuanCafeModel.ThongTinHoaDon" />
+          <EntitySet Name="ThucAn" EntityType="QuanLyQuanCafeModel.ThucAn" />
+          <AssociationSet Name="FK__HoaDon__TrangTha__49C3F6B7" Association="QuanLyQuanCafeModel.FK__HoaDon__TrangTha__49C3F6B7">
+            <End Role="BanThucAn" EntitySet="BanThucAn" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThucAn__Gia__44FF419A" Association="QuanLyQuanCafeModel.FK__ThucAn__Gia__44FF419A">
+            <End Role="DanhMucThucAn" EntitySet="DanhMucThucAn" />
+            <End Role="ThucAn" EntitySet="ThucAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinH__SoLuo__4D94879B" Association="QuanLyQuanCafeModel.FK__ThongTinH__SoLuo__4D94879B">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ThongTinHoaDon" EntitySet="ThongTinHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinH__IdThu__4E88ABD4" Association="QuanLyQuanCafeModel.FK__ThongTinH__IdThu__4E88ABD4">
+            <End Role="ThucAn" EntitySet="ThucAn" />
+            <End Role="ThongTinHoaDon" EntitySet="ThongTinHoaDon" />
+          </AssociationSet>
+          <FunctionImport Name="UPS_TaoListBan" ReturnType="Collection(QuanLyQuanCafeModel.UPS_TaoListBan_Result)" />
+        </EntityContainer>
+        <EntityType Name="BanThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBan" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDon" Relationship="QuanLyQuanCafeModel.FK__HoaDon__TrangTha__49C3F6B7" FromRole="BanThucAn" ToRole="HoaDon" />
+        </EntityType>
+        <EntityType Name="DanhMucThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhMuc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ThucAn" Relationship="QuanLyQuanCafeModel.FK__ThucAn__Gia__44FF419A" FromRole="DanhMucThucAn" ToRole="ThucAn" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayVao" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayRa" Type="DateTime" Precision="0" />
+          <Property Name="IdBan" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BanThucAn" Relationship="QuanLyQuanCafeModel.FK__HoaDon__TrangTha__49C3F6B7" FromRole="HoaDon" ToRole="BanThucAn" />
+          <NavigationProperty Name="ThongTinHoaDon" Relationship="QuanLyQuanCafeModel.FK__ThongTinH__SoLuo__4D94879B" FromRole="HoaDon" ToRole="ThongTinHoaDon" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenDangNhap" />
+          </Key>
+          <Property Name="TenDangNhap" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TenHienThi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Loai" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThongTinHoaDon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="IdThucAn" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HoaDon" Relationship="QuanLyQuanCafeModel.FK__ThongTinH__SoLuo__4D94879B" FromRole="ThongTinHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="ThucAn" Relationship="QuanLyQuanCafeModel.FK__ThongTinH__IdThu__4E88ABD4" FromRole="ThongTinHoaDon" ToRole="ThucAn" />
+        </EntityType>
+        <EntityType Name="ThucAn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenThucAn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdDanhMuc" Type="Int32" Nullable="false" />
+          <Property Name="Gia" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DanhMucThucAn" Relationship="QuanLyQuanCafeModel.FK__ThucAn__Gia__44FF419A" FromRole="ThucAn" ToRole="DanhMucThucAn" />
+          <NavigationProperty Name="ThongTinHoaDon" Relationship="QuanLyQuanCafeModel.FK__ThongTinH__IdThu__4E88ABD4" FromRole="ThucAn" ToRole="ThongTinHoaDon" />
+        </EntityType>
+        <Association Name="FK__HoaDon__TrangTha__49C3F6B7">
+          <End Type="QuanLyQuanCafeModel.BanThucAn" Role="BanThucAn" Multiplicity="1" />
+          <End Type="QuanLyQuanCafeModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IdBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThucAn__Gia__44FF419A">
+          <End Type="QuanLyQuanCafeModel.DanhMucThucAn" Role="DanhMucThucAn" Multiplicity="1" />
+          <End Type="QuanLyQuanCafeModel.ThucAn" Role="ThucAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThucAn">
+              <PropertyRef Name="IdDanhMuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinH__SoLuo__4D94879B">
+          <End Type="QuanLyQuanCafeModel.HoaDon" Role="HoaDon" Multiplicity="1" />
+          <End Type="QuanLyQuanCafeModel.ThongTinHoaDon" Role="ThongTinHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongTinHoaDon">
+              <PropertyRef Name="IdHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinH__IdThu__4E88ABD4">
+          <End Type="QuanLyQuanCafeModel.ThucAn" Role="ThucAn" Multiplicity="1" />
+          <End Type="QuanLyQuanCafeModel.ThongTinHoaDon" Role="ThongTinHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThucAn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongTinHoaDon">
+              <PropertyRef Name="IdThucAn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UPS_TaoListBan_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="TenBan" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TrangThai" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyQuanCafeModelStoreContainer" CdmEntityContainer="QuanLyQuanCafeEntities">
+          <EntitySetMapping Name="BanThucAn">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.BanThucAn">
+              <MappingFragment StoreEntitySet="BanThucAn">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="TenBan" ColumnName="TenBan" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucThucAn">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.DanhMucThucAn">
+              <MappingFragment StoreEntitySet="DanhMucThucAn">
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDon">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+                <ScalarProperty Name="NgayRa" ColumnName="NgayRa" />
+                <ScalarProperty Name="NgayVao" ColumnName="NgayVao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoan">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinHoaDon">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.ThongTinHoaDon">
+              <MappingFragment StoreEntitySet="ThongTinHoaDon">
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="IdThucAn" ColumnName="IdThucAn" />
+                <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThucAn">
+            <EntityTypeMapping TypeName="QuanLyQuanCafeModel.ThucAn">
+              <MappingFragment StoreEntitySet="ThucAn">
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="IdDanhMuc" ColumnName="IdDanhMuc" />
+                <ScalarProperty Name="TenThucAn" ColumnName="TenThucAn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UPS_TaoListBan" FunctionName="QuanLyQuanCafeModel.Store.UPS_TaoListBan">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyQuanCafeModel.UPS_TaoListBan_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TenBan" ColumnName="TenBan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

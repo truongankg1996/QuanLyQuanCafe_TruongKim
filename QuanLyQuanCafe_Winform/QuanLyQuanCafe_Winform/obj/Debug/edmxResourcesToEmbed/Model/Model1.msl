@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyQuanCafeModelStoreContainer" CdmEntityContainer="QuanLyQuanCafeEntities">
+    <EntitySetMapping Name="BanThucAn">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.BanThucAn">
+        <MappingFragment StoreEntitySet="BanThucAn">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenBan" ColumnName="TenBan" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanhMucThucAn">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.DanhMucThucAn">
+        <MappingFragment StoreEntitySet="DanhMucThucAn">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDon">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NgayVao" ColumnName="NgayVao" />
+          <ScalarProperty Name="NgayRa" ColumnName="NgayRa" />
+          <ScalarProperty Name="IdBan" ColumnName="IdBan" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaiKhoan">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.TaiKhoan">
+        <MappingFragment StoreEntitySet="TaiKhoan">
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="Loai" ColumnName="Loai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThongTinHoaDon">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.ThongTinHoaDon">
+        <MappingFragment StoreEntitySet="ThongTinHoaDon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
+          <ScalarProperty Name="IdThucAn" ColumnName="IdThucAn" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThucAn">
+      <EntityTypeMapping TypeName="QuanLyQuanCafeModel.ThucAn">
+        <MappingFragment StoreEntitySet="ThucAn">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenThucAn" ColumnName="TenThucAn" />
+          <ScalarProperty Name="IdDanhMuc" ColumnName="IdDanhMuc" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

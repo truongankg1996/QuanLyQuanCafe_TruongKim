@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f33d69750914cc5a3d9641bbdfde35f" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.BanThucAn" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.DanhMucThucAn" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.HoaDon" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.TaiKhoan" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.ThongTinHoaDon" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="QuanLyQuanCafeModel.ThucAn" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="QuanLyQuanCafeModel.FK__HoaDon__TrangTha__49C3F6B7" />
+        <AssociationConnector Association="QuanLyQuanCafeModel.FK__ThucAn__Gia__44FF419A" />
+        <AssociationConnector Association="QuanLyQuanCafeModel.FK__ThongTinH__SoLuo__4D94879B" />
+        <AssociationConnector Association="QuanLyQuanCafeModel.FK__ThongTinH__IdThu__4E88ABD4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
